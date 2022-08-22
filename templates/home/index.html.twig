@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{# cretaion vaériable pour test #}
+{% set food = "Pizza groovy bacon" %}
+{% set city = "Nantes" %}
+{% set products = ['beurre','patate','biere','tomate'] %}
+{% set user = {'name' : "LE CORROLLER", 'prenom' : 'Romuald', 'age' : 44} %}
+
+{% block body %}
+    {% set var ='<strong>titre en gras</strong>' %}
+
+    {{ var | raw }}
+
+
+    <div class="example-wrapper">
+
+        <div class="row">
+            <p>Tableau index 2 : {{ products[2] }}</p>
+            {% for product in products %}
+                <div class="col mb-1">
+                    <div class="card card-block" style="width: 18rem;">
+                        <h3 class="card-title">{{ product }}</h3>
+                    </div>
+                </div>
+            {% endfor %}
+
+
+        </div>
+
+        <div class="row">
+            <h2>boucle for sur un objet</h2>
+            <dl>
+                {% for key, val in user %}
+                    <div class="col mb-1">
+                        <div class="card card-block" style="width: 18rem;">
+                            <h3 class="card-title">{{ key }}</h3>
+                            <p class="card-text">{{ val }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </dl>
+        </div>
+
+
+        <h1>Hello World</h1>
+        {#    Ceci est un commentaire en twig #}
+        <p>type de pizza : {{ food }}</p>
+        {% if (city == "Paris" ) %}
+            <p>Condition ok</p>
+        {% else %}
+            <p>Condition non rempli</p>
+        {% endif %}
+
+        <div>
+            <h2>voici les info</h2>
+            <p>{{ toto.nom }}</p>
+            <p>{{ toto.prenom }}</p>
+            <p>{{ toto.age }}</p>
+        </div>
+
+
+    </div>
+{% endblock %}

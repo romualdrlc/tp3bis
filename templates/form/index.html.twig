@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello formcontroller!{% endblock %}
+
+{% block body %}
+    <h1>Add wish</h1>
+
+
+    {{ form_start(wishForm) }}
+        <fieldset class="uk-fieldset">
+            <legend class="uk-legend">Add your wish</legend>
+            <div class="uk-margin">
+                {{ form_label(wishForm.title) }}
+                {{ form_widget(wishForm.title) }}
+            </div>
+            <div class="uk-margin">
+                {{ form_label(wishForm.description) }}
+                {{ form_widget(wishForm.description) }}
+            </div>
+            <div class="uk-margin">
+                {{ form_label(wishForm.author) }}
+                {{ form_widget(wishForm.author) }}
+            </div>
+            <div class="uk-margin">
+                {{ form_label(wishForm.dateCreated) }}
+                {{ form_widget(wishForm.dateCreated) }}
+            </div>
+            <div class="uk-margin">
+                <div class="uk-form-controls">
+                    {{ form_label(wishForm.category) }}
+                    {{ form_widget(wishForm.category) }}
+                </div>
+            </div>
+            <button class="uk-button uk-button-default">Submit</button>
+        </fieldset>
+    {{ form_end(wishForm) }}
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello WishController!{% endblock %}
+
+{% block body %}
+
+    <h1>liste de souhait</h1>
+
+    <div class="uk-child-width-1-4@s uk-grid-match" uk-grid>
+        {% for list in listes %}
+            <div>
+                <div class="uk-card uk-card-default">
+                    <div class="uk-card-header">
+                        <div class="uk-grid-small uk-flex-middle">
+                            <div class="uk-width-auto">
+                                <h3 class="uk-card-title uk-margin-remove-bottom"><a
+                                            href="{{ path("app_wish_detail", { 'id': list.id }) }}"
+                                            class="uk-button uk-button-text">{{ list.title }}</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uk-card-body">
+                        <p>Description : {{ list.description }}</p>
+                    </div>
+                    <div class="uk-card-body">
+                        <p>Categorie : {{ list.category }}</p>
+                    </div>
+                    {% if (list.dateCreated != null) %}
+                        <div class="uk-card-body">
+                            <p>Date de creation : {{ list.dateCreated }}</p>
+                        </div>
+                    {% endif %}
+
+                    <div class="uk-card-footer">
+                        <a href="#" class="uk-button uk-button-text">{{ list.author }}</a>
+                        <p uk-margin>
+                            <a class="uk-button uk-button-default"
+                               href="{{ path("app_delete_id", { 'id': list.id }) }}">Delete</a>
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

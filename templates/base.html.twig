@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta
+            charset="UTF-8">
+
+    {# Pour le responsive #}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>
+        {% block title %}Welcome bucket-list!
+        {% endblock %}
+    </title>
+
+    {# CSS BOSTRAP CSS #}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.15.2/dist/css/uikit.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Mouse+Memoirs&display=swap" rel="stylesheet">
+    <link href="{{ asset('assets/css/main-style.css') }}" rel="stylesheet"/>
+
+    {#    favicon   #}
+    <link rel="icon" type="image/x-icon" href="{{ asset("assets/img/favicon.png") }}"/>
+    {% block stylesheets %}
+        {# {{ encore_entry_link_tags('app') }} #}
+    {% endblock %}
+
+    {% block javascripts %}
+        <script src="https://getuikit.com/assets/uikit/dist/js/uikit.js"></script>
+        {# {{ encore_entry_script_tags('app') }} #}
+    {% endblock %}
+</head>
+<body>
+{# Header #}
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{{ path('app_home') }}">
+            <img src="../public/assets/img/logo-512.png" alt="" width="30" height="24"
+                 class="d-inline-block align-text-top">
+            BucketList
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ path('app_wish_list') }}">List</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ path('app_wish_detail',{'id' : 1}) }}">Detail</a>
+                </li>
+                {% if app.user %}
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ path('app_add_wish') }}">Add wish</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ path('app_logout') }}">Logout</a>
+                    </li>
+                    <li class="nav-item">
+                        <p class="nav-link active" >Bonjour {{ app.user.username }}</p>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ path('app_login') }}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ path('app_register') }}">Register</a>
+                    </li>
+                {% endif %}
+
+            </ul>
+            <button class="btn btn-outline-success" type="submit"><a href="{{ path('app_main') }}">About us</a></button>
+        </div>
+    </div>
+</nav>
+
+<div>
+{#    flash message#}
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="uk-alert-success" uk-alert>
+                <a class="uk-alert-close" uk-close></a>
+                <p>{{ message}}</p>
+            </div>
+        {% endfor %}
+    {% endfor %}
+</div>
+{# Milieu #}
+<div class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
+    {% block body %}{% endblock %}
+</div>
+
+{# Footer #}
+<footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50">
+    <div class="container text-center">
+        <small>Copyright &copy; Bucket List</small>
+    </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello WishController!{% endblock %}
+
+{% block body %}
+    <h1>detail du Wish</h1>
+
+    <div class="uk-child-width-1-4@s uk-grid-match" uk-grid>
+        <div class="uk-card uk-card-default">
+            <div class="uk-card-header">
+                <div class="uk-grid-small uk-flex-middle">
+                    <div class="uk-width-auto">
+                        <h3 class="uk-card-title uk-margin-remove-bottom">{{ detailWish.title }}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="uk-card-body">
+                <p>Description : {{ detailWish.description }}</p>
+            </div>
+            <div class="uk-card-body">
+                <p>Categorie : {{ detailWish.category }}</p>
+            </div>
+            {% if (detailWish.dateCreated != null) %}
+                <div class="uk-card-body">
+                    <p>Date de creation : {{ detailWish.dateCreated }}</p>
+                </div>
+            {% endif %}
+
+            <div class="uk-card-footer">
+                {{ detailWish.author }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
